@@ -1,0 +1,48 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    var loaiHangs = ViewData["loaiHang"] as List<LoaiHang>;
+    Layout = "~/Views/Shared/DucVinh_Layout.cshtml";
+}
+@model Vinh_221231051.ViewModels.SuaHang
+<div>
+    <h3>Mai Đức Vinh</h3>
+    <h4>Sửa</h4>
+    <form asp-action="Edit" asp-controller="Home" method="post">
+        <input asp-for="MaHang" type="hidden" />
+        <div>
+            <select asp-for="MaLoai">
+                @foreach (var i in loaiHangs)
+                {
+                    if (i.MaLoai == Model.MaLoai)
+                    {
+                        <option value="@i.MaLoai" selected>@i.TenLoai</option>
+                    }
+                    else
+                    {
+                        <option value="@i.MaLoai">@i.TenLoai</option>
+                    }
+                }
+            </select>
+        </div>
+        <div>
+            <label asp-for="TenHang"></label>
+            <input asp-for="TenHang" />
+            <span asp-validation-for="TenHang"></span>
+        </div>
+        <div>
+            <label asp-for="Gia"></label>
+            <input asp-for="Gia" />
+            <span asp-validation-for="Gia"></span>
+        </div>
+        <div>
+            <label asp-for="Anh"></label>
+            <input asp-for="Anh" />
+            <span asp-validation-for="Anh"></span>
+        </div>
+        <div>
+            <button type="submit">Xác nhận</button>
+        </div>
+    </form>
+</div>
